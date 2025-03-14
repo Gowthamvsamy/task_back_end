@@ -3,29 +3,29 @@ const mongoose = require("mongoose");
 
 const taskSchema = new mongoose.Schema({
     task_id: {
-        type: 'string',
+        type: String,
         required: true,
         unique: true,
     },
     task_name: {
-        type: 'string',
+        type: String,
         required: true,
         unique: true,
     },
     deadline:{
-        type: 'string',
+        type: String,
         required: true,
     },
     assign:{
-        type: 'string',
+        type: String,
         required: true,
     },
     description:{
-        type: 'string',
+        type: String,
         required: true,
     },
     status:{
-        type: 'string',
+        type: String,
         default: "Todo"
     }
 });
