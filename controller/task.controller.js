@@ -18,7 +18,7 @@ taskRouter.post("/add", async (req, res) => {
             data: newTask
         });
     } catch (err) {
-        console.error("Task Save Error:", err); 
+        console.error("Task Save Error:", err);
         return res.status(500).json({
             message: 'Error Adding task',
             error: err.message
@@ -41,5 +41,24 @@ taskRouter.get("/all", async (req, res) => {
     }
 });
 
+taskRouter.patch("/update/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updates = req.body;
+
+        const updatedTask = await taskModel.findByIdAndUpdate(id, updates, {
+            new: true, // Return the updated document
+            runValidators: true, // Validate updates based on schema
+        });
+
+        if (!updatedTask) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.json(updatedTask);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 module.exports = taskRouter;
