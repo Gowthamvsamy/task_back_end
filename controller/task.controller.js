@@ -7,7 +7,7 @@ taskRouter.post("/add", async (req, res) => {
 
         const { task_id, task_name, deadline, assign, description, status } = req.body;
 
-        const newTask = new taskModel({ task_id, task_name, deadline, assign, description, status });
+        const newTask = new taskModel({ task_id, task_name, deadline: new Date(deadline), assign, description, status });
 
         await newTask.save();
         console.log("New Task Saved:", newTask);

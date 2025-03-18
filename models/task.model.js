@@ -13,7 +13,7 @@ const taskSchema = new mongoose.Schema({
         unique: true,
     },
     deadline:{
-        type: String,
+        type: Date,  
         required: true,
     },
     assign:{
