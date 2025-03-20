@@ -5,9 +5,9 @@ const taskRouter = require("express").Router();
 taskRouter.post("/add", async (req, res) => {
     try {
 
-        const { task_id, task_name, deadline, assign, description, status } = req.body;
+        const { task_id, task_name, deadline, assign, description, priority, status } = req.body;
 
-        const newTask = new taskModel({ task_id, task_name, deadline: new Date(deadline), assign, description, status });
+        const newTask = new taskModel({ task_id, task_name, deadline: new Date(deadline), assign, description, priority, status });
 
         await newTask.save();
         console.log("New Task Saved:", newTask);
