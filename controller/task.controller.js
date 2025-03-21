@@ -1,7 +1,10 @@
+// import
 const taskModel = require('../models/task.model');
 
+// Express router
 const taskRouter = require("express").Router();
 
+// POST API for Task data
 taskRouter.post("/add", async (req, res) => {
     try {
 
@@ -26,6 +29,7 @@ taskRouter.post("/add", async (req, res) => {
     }
 });
 
+// GET API for Task data
 taskRouter.get("/all", async (req, res) => {
     try {
         const tasks = await taskModel.find();
@@ -41,6 +45,7 @@ taskRouter.get("/all", async (req, res) => {
     }
 });
 
+// PATCH method for Update the task
 taskRouter.patch("/update/:id", async (req, res) => {
     try {
         const { id } = req.params;
