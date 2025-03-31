@@ -11,9 +11,7 @@ taskRouter.post("/add", async (req, res) => {
         const { task_id, task_name, deadline, assign, description, priority, status } = req.body;
 
         const newTask = new taskModel({ task_id, task_name, deadline: new Date(deadline), assign, description, priority, status });
-
         await newTask.save();
-        console.log("New Task Saved:", newTask);
 
         return res.status(201).json({
             message: 'Task Added successfully',
@@ -21,7 +19,6 @@ taskRouter.post("/add", async (req, res) => {
             data: newTask
         });
     } catch (err) {
-        console.error("Task Save Error:", err);
         return res.status(500).json({
             message: 'Error Adding task',
             error: err.message
