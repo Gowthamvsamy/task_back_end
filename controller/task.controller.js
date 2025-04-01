@@ -54,7 +54,7 @@ taskRouter.patch("/update/:id", async (req, res) => {
         });
 
         if (!updatedTask) {
-            return res.status(404).json({ message: "User not found" });
+            return res.status(404).json({ message: "Task not found" });
         }
 
         res.json(updatedTask);
@@ -62,5 +62,23 @@ taskRouter.patch("/update/:id", async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+
+taskRouter.delete('/delete/:id', async (req, res) => {
+    try {
+
+        const { id } = req.params;
+
+        const deletedTask = await taskModel.findByIdAndDelete(id);
+
+        if (!deletedTask) {
+            return res.status(404).json({ message: "Task not found" });
+        }
+
+        res.json({ message: "Task deleted successfully", deletedTask });
+
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+})
 
 module.exports = taskRouter;
