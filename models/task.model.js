@@ -13,25 +13,37 @@ const taskSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    deadline:{
-        type: Date,  
+    deadline: {
+        type: Date,
         required: true,
     },
-    assign:{
+    assign: {
         type: String,
         required: true,
     },
-    description:{
+    description: {
         type: String,
         required: true,
     },
-    priority:{
+    priority: {
         type: String,
         required: true,
     },
-    status:{
+    status: {
         type: String,
         default: "Todo"
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    },
+    is_deleted: {
+        type: Boolean,
+        default: false
     }
 });
 
